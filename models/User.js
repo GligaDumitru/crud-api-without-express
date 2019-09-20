@@ -100,6 +100,23 @@ class User {
     });
   }
 
+  static findOneAndUpdate(conditions, updateData, options) {
+    return new Promise((resolve, reject) => {
+      userModel.findOneAndUpdate(
+        conditions,
+        updateData,
+        options,
+        (err, docs) => {
+          if (docs) {
+            resolve(docs);
+          } else {
+            reject(err);
+          }
+        }
+      );
+    });
+  }
+
   // Delete /users/:id
   static delete(conditions, selecParams) {
     return new Promise((resolve, reject) => {

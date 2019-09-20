@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 module.exports.success = (res, data = null) => {
   addHeaders(res);
 
@@ -12,6 +14,18 @@ module.exports.success = (res, data = null) => {
       3
     )
   );
+};
+
+module.exports.crypt = password => {
+  return bcrypt.hash(password, (saltRounds = 10), (err, hash) => {
+    return hash;
+  });
+};
+
+module.exports.checkPassword = (password, hash) => {
+  bcrypt.compare(password, hash, (err, res) => {
+    return res;
+  });
 };
 
 module.exports.error = (res, error = "An error ocured", statusCode = 500) => {

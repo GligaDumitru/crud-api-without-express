@@ -19,7 +19,7 @@ const routes = [
   {
     method: "PUT",
     path: /\/users\/([0-9a-z]+)/,
-    handler: userController.show.bind(userController)
+    handler: userController.update.bind(userController)
   },
   {
     method: "DELETE",
